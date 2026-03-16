@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderFooter();
   initScrollReveal();
   initNavHighlight();
+  initMobileNav();         // ← added
 });
 
 // ─── META ───────────────────────────────────────────────────
@@ -166,7 +167,6 @@ function renderContact() {
 // ─── FOOTER ─────────────────────────────────────────────────
 function renderFooter() {
   const { name } = PORTFOLIO.meta;
-  // Dynamic year — never hardcoded
   document.getElementById("footer-year").textContent = new Date().getFullYear();
   document.getElementById("footer-name").textContent = name;
 }
@@ -185,8 +185,6 @@ function initScrollReveal() {
     { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
   );
 
-  // Observe all reveal elements (including dynamically rendered ones)
-  // Use a short delay to let DOM render first
   setTimeout(() => {
     document.querySelectorAll(".reveal").forEach((el, i) => {
       el.style.transitionDelay = `${Math.min(i * 0.04, 0.3)}s`;
@@ -214,4 +212,46 @@ function initNavHighlight() {
   );
 
   sections.forEach((s) => obs.observe(s));
+}
+
+// ─── MOBILE NAV ─────────────────────────────────────────────
+function initMobileNav() {
+  const hamburger = document.getElementById("nav-hamburger");
+  const navLinks  = document.getElementById("nav-links");
+  const overlay   = document.getElementById("nav-overlay");
+
+  if (!hamburger || !navLinks || !overlay) return;
+
+  function openMenu() {
+    navLinks.classList.add("open");
+    overlay.classList.add("open");
+    hamburger.classList.add("open");
+    hamburger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove("open");
+    overlay.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.contains("open") ? closeMenu() : openMenu();
+  });
+
+  // Tap overlay to close
+  overlay.addEventListener("click", closeMenu);
+
+  // Tap any nav link to close drawer and let scroll happen
+  document.querySelectorAll(".nav-mobile-link").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Escape key closes drawer
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 }
