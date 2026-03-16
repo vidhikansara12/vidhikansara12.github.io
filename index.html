@@ -24,7 +24,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#about">About</a></li>
   </ul>
-  <a href="#" class="nav-cta" id="nav-cta">Hire Me</a>
+  <!-- <a href="#" class="nav-cta" id="nav-cta"></a> -->
 </nav>
 
 <!-- ─── HERO ─────────────────────────────────────────────── -->
@@ -43,28 +43,31 @@
   </div>
 
   <div class="hero-right">
-    <!-- Status -->
-    <div class="hero-status-row">
-      <div class="status-dot"></div>
-      <div class="status-text">
-        <div class="status-label" id="hero-status-label"></div>
-        <div class="status-note" id="hero-status-note"></div>
+    <!-- Currently building -->
+    <div class="hero-building-block">
+      <div class="hero-block-label">Currently Building</div>
+      <div class="hero-building-card">
+        <div class="building-dot"></div>
+        <div>
+          <div class="building-name" id="hero-building-project"></div>
+          <div class="building-note" id="hero-building-note"></div>
+        </div>
       </div>
     </div>
 
     <div class="hero-divider"></div>
 
-    <!-- Seeking -->
-    <div class="hero-seeking-block">
-      <div class="hero-block-label">Looking for</div>
-      <div class="seeking-roles" id="hero-seeking"></div>
+    <!-- Interests -->
+    <div class="hero-interests-block">
+      <div class="hero-block-label">What I care about</div>
+      <div class="hero-interests" id="hero-interests"></div>
     </div>
 
     <div class="hero-divider"></div>
 
-    <!-- Statement -->
+    <!-- Philosophy -->
     <div class="hero-statement-block">
-      <div class="hero-block-label">What drives me</div>
+      <div class="hero-block-label">Philosophy</div>
       <p class="hero-statement" id="hero-statement"></p>
     </div>
 
@@ -112,9 +115,6 @@
         <strong>Generalist by instinct, systems thinker by training.</strong>
         I move across the stack — from ML experimentation and LLM integration
         to distributed backends and accessible frontends.
-      </p>
-      <p style="font-size:15px; color:#555;">
-        I only list what I can defend in a technical interview.
       </p>
       <div class="cert-badge">
         <div class="cert-icon">☁</div>
@@ -172,10 +172,9 @@
 <footer>
   <span class="footer-copy">
     © <span id="footer-year"></span> <span id="footer-name"></span>
-    · Built from scratch · Deployed on GitHub Pages
   </span>
-  <!-- <span class="footer-tag">MS CS · Stevens · AWS CCP</span> -->
-</footer>
+  <!-- <span class="footer-tag">MS CS · Stevens · AWS CCP</span>
+</footer> -->
 
 <!-- Scripts: data first, then renderer -->
 <script src="js/data.js"></script>

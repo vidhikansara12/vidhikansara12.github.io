@@ -23,37 +23,50 @@ function renderMeta() {
 // ─── NAV ────────────────────────────────────────────────────
 function renderNav() {
   const { initials, email } = PORTFOLIO.meta;
-  document.getElementById("nav-logo").textContent = `${initials}.`;
-  document.getElementById("nav-cta").href = `mailto:${email}`;
+  const navLogo = document.getElementById("nav-logo");
+  if (navLogo) navLogo.textContent = `${initials}.`;
+  const navCta = document.getElementById("nav-cta");
+  if (navCta) navCta.href = `mailto:${email}`;
 }
 
 // ─── HERO ───────────────────────────────────────────────────
 function renderHero() {
   const { meta, hero } = PORTFOLIO;
 
-  document.getElementById("hero-availability").textContent = meta.availability;
-  document.getElementById("hero-name-first").textContent = meta.name.split(" ")[0];
-  document.getElementById("hero-name-last").textContent = meta.name.split(" ")[1] + ".";
-  document.getElementById("hero-desc").textContent = meta.description;
-  document.getElementById("hero-email-cta").href = `mailto:${meta.email}`;
+  const setText = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+  const setHref = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.href = val;
+  };
 
-  // Status panel
-  document.getElementById("hero-status-label").textContent = hero.status.label;
-  document.getElementById("hero-status-note").textContent = hero.status.note;
-  document.getElementById("hero-location").textContent = meta.location;
-  document.getElementById("hero-statement").textContent = hero.statement;
+  setText("hero-availability", meta.availability);
+  const nameParts = (meta.name || "").split(" ");
+  setText("hero-name-first", nameParts[0] || "");
+  setText("hero-name-last", (nameParts[1] || "") + (nameParts[1] ? "." : ""));
+  setText("hero-desc", meta.description);
+  setHref("hero-email-cta", `mailto:${meta.email}`);
 
-  // Seeking roles
-  const seekingEl = document.getElementById("hero-seeking");
-  seekingEl.innerHTML = hero.seeking
-    .map(r => `<span class="seeking-role">${r}</span>`)
-    .join("");
+  // Currently building
+  setText("hero-building-project", (hero.building && hero.building.project) || "");
+  setText("hero-building-note", (hero.building && hero.building.note) || "");
+
+  // Interests
+  const interestsEl = document.getElementById("hero-interests");
+  if (interestsEl && Array.isArray(hero.interests)) {
+    interestsEl.innerHTML = hero.interests.map(i => `<span class="interest-item">${i}</span>`).join("");
+  }
+
+  // Statement
+  setText("hero-statement", hero.statement);
 
   // Stack pills
   const stackEl = document.getElementById("hero-stack-pills");
-  stackEl.innerHTML = hero.coreStack
-    .map(s => `<span class="pill">${s}</span>`)
-    .join("");
+  if (stackEl && Array.isArray(hero.coreStack)) {
+    stackEl.innerHTML = hero.coreStack.map(s => `<span class="pill">${s}</span>`).join("");
+  }
 }
 
 // ─── EXPERIENCE ─────────────────────────────────────────────
