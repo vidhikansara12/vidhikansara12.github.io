@@ -1,257 +1,145 @@
+/**
+ * MAIN.JS — App Initialisation & Interactions
+ * Responsibilities:
+ *   1. Boot: call all render functions in order
+ *   2. Scroll reveal: IntersectionObserver on .reveal elements
+ *   3. Nav: sticky blur on scroll + active link highlighting
+ *   4. Mobile nav: hamburger drawer open/close
+ *   5. Project footer layout fix (live-link alignment)
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
+  boot();
+  initScrollReveal();
+  initNavScroll();
+  initNavHighlight();
+  initMobileNav();
+});
+
+/* ══════════════════════════════════════════════════════
+   1. BOOT — render all sections in order
+══════════════════════════════════════════════════════ */
+function boot() {
   renderMeta();
   renderNav();
   renderHero();
   renderExperience();
   renderProjects();
+  renderRoadmap();
   renderSkills();
+  renderCertifications();
   renderAbout();
   renderContact();
   renderFooter();
-  initScrollReveal();
-  initNavHighlight();
-  initMobileNav();         // ← added
-});
-
-// ─── META ───────────────────────────────────────────────────
-function renderMeta() {
-  const { name, title, email } = PORTFOLIO.meta;
-  document.title = `${name} — ${title}`;
-  const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute("content", PORTFOLIO.meta.description);
 }
 
-// ─── NAV ────────────────────────────────────────────────────
-function renderNav() {
-  const { initials, email } = PORTFOLIO.meta;
-  const navLogo = document.getElementById("nav-logo");
-  if (navLogo) navLogo.textContent = `${initials}.`;
-  const navCta = document.getElementById("nav-cta");
-  if (navCta) navCta.href = `mailto:${email}`;
-}
-
-// ─── HERO ───────────────────────────────────────────────────
-function renderHero() {
-  const { meta, hero } = PORTFOLIO;
-
-  const setText = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val;
-  };
-  const setHref = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.href = val;
-  };
-
-  setText("hero-availability", meta.availability);
-  const nameParts = (meta.name || "").split(" ");
-  setText("hero-name-first", nameParts[0] || "");
-  setText("hero-name-last", (nameParts[1] || "") + (nameParts[1] ? "." : ""));
-  setText("hero-desc", meta.description);
-  setHref("hero-email-cta", `mailto:${meta.email}`);
-
-  // Currently building
-  setText("hero-building-project", (hero.building && hero.building.project) || "");
-  setText("hero-building-note", (hero.building && hero.building.note) || "");
-
-  // Interests
-  const interestsEl = document.getElementById("hero-interests");
-  if (interestsEl && Array.isArray(hero.interests)) {
-    interestsEl.innerHTML = hero.interests.map(i => `<span class="interest-item">${i}</span>`).join("");
-  }
-
-  // Statement
-  setText("hero-statement", hero.statement);
-
-  // Stack pills
-  const stackEl = document.getElementById("hero-stack-pills");
-  if (stackEl && Array.isArray(hero.coreStack)) {
-    stackEl.innerHTML = hero.coreStack.map(s => `<span class="pill">${s}</span>`).join("");
-  }
-}
-
-// ─── EXPERIENCE ─────────────────────────────────────────────
-function renderExperience() {
-  const grid = document.getElementById("exp-grid");
-  grid.innerHTML = PORTFOLIO.experience.map(exp => `
-    <div class="exp-card reveal">
-      <div class="exp-role">${exp.role}</div>
-      <div class="exp-company">${exp.company}</div>
-      <div class="exp-date">${exp.period} · ${exp.location} · ${exp.team}</div>
-      <ul class="exp-bullets">
-        ${exp.bullets.map(b => `<li>${b}</li>`).join("")}
-      </ul>
-      <div class="exp-tags">
-        ${exp.tags.map(t => `<span class="exp-tag">${t}</span>`).join("")}
-      </div>
-    </div>
-  `).join("");
-}
-
-// ─── PROJECTS ───────────────────────────────────────────────
-function renderProjects() {
-  const grid = document.getElementById("projects-grid");
-  grid.innerHTML = PORTFOLIO.projects.map(p => `
-    <div class="project-card${p.featured ? " featured" : ""} reveal">
-      ${p.badge ? `<div class="project-badge">${p.badge}</div>` : ""}
-      <div class="project-num">${p.id}</div>
-      <div class="project-name">${p.name}</div>
-      <div class="project-desc">${p.desc}</div>
-      <div class="project-stack">
-        ${p.stack.map(t => `<span class="project-tech">${t}</span>`).join("")}
-      </div>
-      <a href="${p.github}" target="_blank" rel="noopener" class="project-link">
-        View on GitHub →
-      </a>
-    </div>
-  `).join("");
-}
-
-// ─── SKILLS ─────────────────────────────────────────────────
-function renderSkills() {
-  const container = document.getElementById("skills-groups");
-  container.innerHTML = PORTFOLIO.skills.map(group => `
-    <div class="skill-group">
-      <div class="skill-group-label">${group.category}</div>
-      <div class="skill-row">
-        ${group.items.map(item => `
-          <span class="skill-item${item.highlight ? " highlight" : ""}">${item.name}</span>
-        `).join("")}
-      </div>
-    </div>
-  `).join("");
-}
-
-// ─── ABOUT ──────────────────────────────────────────────────
-function renderAbout() {
-  const body = document.getElementById("about-body");
-  body.innerHTML = PORTFOLIO.about.map(p => `<p>${p}</p>`).join("");
-
-  const eduStack = document.getElementById("edu-stack");
-  eduStack.innerHTML = PORTFOLIO.education.map(edu => `
-    <div class="edu-card">
-      <div class="edu-degree">${edu.degree}</div>
-      <div class="edu-school">${edu.school} · ${edu.location}</div>
-      ${edu.honors ? `<div class="edu-honors">${edu.honors}</div>` : ""}
-      <div class="edu-meta">
-        <span class="edu-year">${edu.year}</span>
-        <span class="edu-gpa">${edu.gpa} GPA</span>
-      </div>
-      <div class="courses">
-        ${edu.courses.map(c => `<span class="course-tag">${c}</span>`).join("")}
-      </div>
-    </div>
-  `).join("");
-}
-
-// ─── CONTACT ────────────────────────────────────────────────
-function renderContact() {
-  const { email, linkedin, github } = PORTFOLIO.meta;
-  const links = [
-    { label: "Email", value: email, href: `mailto:${email}` },
-    { label: "LinkedIn", value: "linkedin.com/in/vidhikansara12", href: linkedin },
-    { label: "GitHub", value: "github.com/vidhikansara12", href: github },
-  ];
-  const container = document.getElementById("contact-links");
-  container.innerHTML = links.map(l => `
-    <a href="${l.href}" target="_blank" rel="noopener" class="contact-link">
-      <div>
-        <div class="contact-link-label">${l.label}</div>
-        <div class="contact-link-val">${l.value}</div>
-      </div>
-      <span class="contact-arrow">→</span>
-    </a>
-  `).join("");
-}
-
-// ─── FOOTER ─────────────────────────────────────────────────
-function renderFooter() {
-  const { name } = PORTFOLIO.meta;
-  document.getElementById("footer-year").textContent = new Date().getFullYear();
-  document.getElementById("footer-name").textContent = name;
-}
-
-// ─── SCROLL REVEAL ──────────────────────────────────────────
+/* ══════════════════════════════════════════════════════
+   2. SCROLL REVEAL
+   Staggered fade-up on all .reveal elements.
+   Uses IntersectionObserver — no library needed.
+══════════════════════════════════════════════════════ */
 function initScrollReveal() {
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("visible");
-          observer.unobserve(e.target);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.08, rootMargin: "0px 0px -36px 0px" }
   );
 
+  // Small delay so render() has flushed all DOM writes
   setTimeout(() => {
     document.querySelectorAll(".reveal").forEach((el, i) => {
-      el.style.transitionDelay = `${Math.min(i * 0.04, 0.3)}s`;
+      // Stagger siblings within the same parent
+      const siblings = Array.from(el.parentElement.querySelectorAll(".reveal"));
+      const sibIndex = siblings.indexOf(el);
+      el.style.transitionDelay = `${Math.min(sibIndex * 0.07, 0.4)}s`;
       observer.observe(el);
     });
-  }, 50);
+  }, 80);
 }
 
-// ─── NAV ACTIVE STATE ───────────────────────────────────────
+/* ══════════════════════════════════════════════════════
+   3. NAV SCROLL — add blur/border when page scrolls
+══════════════════════════════════════════════════════ */
+function initNavScroll() {
+  const nav = document.getElementById("nav");
+  if (!nav) return;
+
+  const toggle = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+  toggle();
+  window.addEventListener("scroll", toggle, { passive: true });
+}
+
+/* ══════════════════════════════════════════════════════
+   4. NAV HIGHLIGHT — active link follows scroll position
+══════════════════════════════════════════════════════ */
 function initNavHighlight() {
   const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const links    = document.querySelectorAll(".nav-link");
+  if (!sections.length || !links.length) return;
 
   const obs = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          navLinks.forEach((a) => a.classList.remove("active"));
-          const match = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          links.forEach((a) => a.classList.remove("active"));
+          const match = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
           if (match) match.classList.add("active");
         }
       });
     },
-    { threshold: 0.4 }
+    { threshold: 0.35 }
   );
 
   sections.forEach((s) => obs.observe(s));
 }
 
-// ─── MOBILE NAV ─────────────────────────────────────────────
+/* ══════════════════════════════════════════════════════
+   5. MOBILE NAV — hamburger drawer
+══════════════════════════════════════════════════════ */
 function initMobileNav() {
-  const hamburger = document.getElementById("nav-hamburger");
+  const hamburger = document.getElementById("hamburger");
   const navLinks  = document.getElementById("nav-links");
   const overlay   = document.getElementById("nav-overlay");
-
   if (!hamburger || !navLinks || !overlay) return;
 
-  function openMenu() {
+  function open() {
     navLinks.classList.add("open");
-    overlay.classList.add("open");
+    overlay.classList.add("visible");
     hamburger.classList.add("open");
     hamburger.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
   }
 
-  function closeMenu() {
+  function close() {
     navLinks.classList.remove("open");
-    overlay.classList.remove("open");
+    overlay.classList.remove("visible");
     hamburger.classList.remove("open");
     hamburger.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
   }
 
-  hamburger.addEventListener("click", () => {
-    navLinks.classList.contains("open") ? closeMenu() : openMenu();
-  });
+  hamburger.addEventListener("click", () =>
+    navLinks.classList.contains("open") ? close() : open()
+  );
 
-  // Tap overlay to close
-  overlay.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", close);
 
-  // Tap any nav link to close drawer and let scroll happen
-  document.querySelectorAll(".nav-mobile-link").forEach(link => {
-    link.addEventListener("click", closeMenu);
-  });
+  // Close on any nav link tap (smooth scroll will handle the jump)
+  document.querySelectorAll(".nav-link").forEach((link) =>
+    link.addEventListener("click", close)
+  );
 
-  // Escape key closes drawer
+  // Escape key
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
+    if (e.key === "Escape") close();
   });
+
+  // Show overlay when needed
+  overlay.style.display = "block";
 }

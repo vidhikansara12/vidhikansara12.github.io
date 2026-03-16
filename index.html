@@ -1,177 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="" />
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css" />
-  <title>Loading...</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Vidhi Kansara — MS Computer Science, Stevens Institute of Technology. Software Engineer specializing in ML systems, distributed backends, and accessible frontends. Previously at JPMorgan Chase."/>
+  <meta property="og:title"       content="Vidhi Kansara — Software Engineer"/>
+  <meta property="og:description" content="Building intelligent systems that ship. MS CS Stevens '25. Previously at JPMorgan Chase."/>
+  <meta property="og:type"        content="website"/>
+  <meta name="theme-color"        content="#050510"/>
+
+  <!-- 
+    FONT STACK — chosen for readability + premium feel:
+    • Bricolage Grotesque : distinctive display, excellent at large sizes, very legible
+    • Plus Jakarta Sans   : warm, highly readable body — better than Inter/Roboto
+    • JetBrains Mono      : crisp monospace for labels & metadata only
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="css/style.css"/>
+  <title>Vidhi Kansara — Software Engineer</title>
 </head>
 <body>
 
-<!-- ─── NAV ─────────────────────────────────────────────── -->
-<nav>
-  <a href="#hero" class="nav-logo" id="nav-logo"></a>
+<!-- ══════════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Primary">
+  <a href="#hero" class="nav-logo" id="nav-logo" aria-label="Home">VK.</a>
 
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#experience" class="nav-mobile-link">Experience</a></li>
-    <li><a href="#projects" class="nav-mobile-link">Projects</a></li>
-    <li><a href="#skills" class="nav-mobile-link">Skills</a></li>
-    <li><a href="#about" class="nav-mobile-link">About</a></li>
-    <li class="nav-mobile-cta-item">
-      <a href="#contact" class="nav-mobile-link nav-cta">Contact</a>
-    </li>
+  <ul class="nav-links" id="nav-links" role="list">
+    <li><a href="#experience"     class="nav-link">Experience</a></li>
+    <li><a href="#projects"       class="nav-link">Projects</a></li>
+    <li><a href="#skills"         class="nav-link">Skills</a></li>
+    <li><a href="#certifications" class="nav-link">Certs</a></li>
+    <li><a href="#about"          class="nav-link">About</a></li>
+    <li><a href="#contact"        class="nav-link">Contact</a></li>
   </ul>
 
-  <!-- Hamburger: hidden on desktop, shown on mobile via CSS -->
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+  <div class="nav-end">
+    <!-- Replace href with actual resume PDF path before deploying -->
+    <a href="./Vidhi_Kansara_Resume.pdf" class="nav-resume" download>↓ Resume</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
-
-<!-- Dim overlay behind mobile drawer -->
 <div class="nav-overlay" id="nav-overlay"></div>
 
-<!-- ─── HERO ─────────────────────────────────────────────── -->
-<section id="hero">
-  <div class="hero-left">
-    <div class="hero-tag" id="hero-availability"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Introduction">
+  <!-- <div class="hero-left"> -->
+
+    <div class="hero-avail" id="hero-avail">
+      <span class="avail-pulse"></span>
+      <span id="avail-label"></span>
+    </div>
+
     <h1 class="hero-name">
-      <span id="hero-name-first"></span><br>
-      <span id="hero-name-last"></span>
+      <span id="name-first"></span><br>
+      <span id="name-last" class="name-last"></span>
     </h1>
-    <p class="hero-desc" id="hero-desc"></p>
+
+    <p class="hero-tagline" id="hero-tagline"></p>
+    <p class="hero-desc"    id="hero-desc"></p>
+
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="#" class="btn-ghost" id="hero-email-cta">Get in Touch →</a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-building-block">
-      <div class="hero-block-label">Currently Building</div>
-      <div class="hero-building-card">
-        <div class="building-dot"></div>
-        <div>
-          <div class="building-name" id="hero-building-project"></div>
-          <div class="building-note" id="hero-building-note"></div>
-        </div>
-      </div>
+      <a href="./Vidhi_Kansara_Resume.pdf" class="btn-ghost" download>↓ Resume PDF</a>
     </div>
 
-    <div class="hero-divider"></div>
+    <div class="hero-social" id="hero-social"></div>
+  <!-- </div> -->
 
-    <div class="hero-interests-block">
-      <div class="hero-block-label">What I care about</div>
-      <div class="hero-interests" id="hero-interests"></div>
-    </div>
-
-    <div class="hero-divider"></div>
-
-    <div class="hero-statement-block">
-      <div class="hero-block-label">Philosophy</div>
-      <p class="hero-statement" id="hero-statement"></p>
-    </div>
-
-    <div class="hero-divider"></div>
-
-    <div class="hero-stack-block">
-      <div class="hero-block-label">Core Stack</div>
-      <div class="stack-pills" id="hero-stack-pills"></div>
-    </div>
-  </div>
 </section>
 
-<!-- ─── EXPERIENCE ────────────────────────────────────────── -->
-<section id="experience">
+
+<!-- ══════════════════════════════════════════════════════════
+     EXPERIENCE
+══════════════════════════════════════════════════════════ -->
+<section id="experience" aria-label="Work experience">
   <div class="section-header reveal">
     <span class="section-num">01</span>
-    <h2 class="section-title">Experience</h2>
+    <div>
+      <h2 class="section-title">Experience</h2>
+    </div>
   </div>
-  <div class="exp-grid" id="exp-grid"></div>
+  <div class="exp-list" id="exp-list" role="list"></div>
 </section>
 
-<!-- ─── PROJECTS ──────────────────────────────────────────── -->
-<section id="projects">
+
+<!-- ══════════════════════════════════════════════════════════
+     PROJECTS
+══════════════════════════════════════════════════════════ -->
+<section id="projects" aria-label="Projects">
   <div class="section-header reveal">
     <span class="section-num">02</span>
-    <h2 class="section-title">Projects</h2>
+    <div>
+      <h2 class="section-title">Projects</h2>
+    </div>
   </div>
-  <div class="projects-grid" id="projects-grid"></div>
-</section>
 
-<!-- ─── SKILLS ────────────────────────────────────────────── -->
-<section id="skills">
+  <div class="projects-grid" id="projects-grid" role="list"></div>
+
+  <!-- Roadmap / Suggested Next Projects
+  <div class="roadmap-block reveal">
+    <div class="roadmap-header">
+      <span class="roadmap-tag">On the Roadmap</span>
+      <p class="roadmap-sub">Projects I'm planning to build next — expanding my depth in AI tooling, open-source, and real-time systems.</p>
+    </div>
+    <div class="roadmap-grid" id="roadmap-grid"></div>
+  </div>
+</section> -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SKILLS
+══════════════════════════════════════════════════════════ -->
+<section id="skills" aria-label="Skills">
   <div class="section-header reveal">
     <span class="section-num">03</span>
-    <h2 class="section-title">Skills</h2>
+    <div>
+      <h2 class="section-title">Skills</h2>
+    </div>
   </div>
   <div class="skills-layout">
-    <div class="skills-intro reveal">
-      <p>
-        <strong>Generalist by instinct, systems thinker by training.</strong>
-        I move across the stack — from ML experimentation and LLM integration
-        to distributed backends and accessible frontends.
-      </p>
-      <div class="cert-badge">
-        <div class="cert-icon">☁</div>
-        <div class="cert-text">
-          AWS Certified Cloud Practitioner
-          <span>Amazon Web Services · Foundational</span>
-        </div>
-      </div>
-    </div>
-    <div class="skills-groups reveal" id="skills-groups"></div>
+    <div class="skills-intro reveal" id="skills-intro"></div>
+    <div class="skills-grid"  id="skills-grid"></div>
   </div>
 </section>
 
-<!-- ─── ABOUT ─────────────────────────────────────────────── -->
-<section id="about">
+
+<!-- ══════════════════════════════════════════════════════════
+     CERTIFICATIONS
+══════════════════════════════════════════════════════════ -->
+<section id="certifications" aria-label="Certifications">
   <div class="section-header reveal">
     <span class="section-num">04</span>
-    <h2 class="section-title">About</h2>
+    <div>
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-sub">Verified credentials</p>
+    </div>
   </div>
-  <div class="about-grid">
-    <div class="about-body reveal" id="about-body"></div>
-    <div class="edu-stack reveal" id="edu-stack"></div>
-  </div>
+  <div class="certs-row" id="certs-row"></div>
 </section>
 
-<!-- ─── CONTACT ───────────────────────────────────────────── -->
-<section id="contact">
+
+<!-- ══════════════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════════ -->
+<section id="about" aria-label="About">
   <div class="section-header reveal">
     <span class="section-num">05</span>
-    <h2 class="section-title">Contact</h2>
-  </div>
-  <div class="contact-layout">
-    <div class="reveal">
-      <div class="contact-headline">
-        Let's build<br>something<br><span>meaningful.</span>
-      </div>
-      <p class="contact-sub">
-        Open to new grad SWE roles, ML engineering positions,<br>
-        and interesting conversations about systems design.
-      </p>
+    <div>
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">The story behind the code</p>
     </div>
-    <div class="contact-links reveal" id="contact-links"></div>
+  </div>
+  <div class="about-layout">
+    <div class="about-copy  reveal" id="about-copy"></div>
+    <div class="about-aside reveal">
+      <div class="about-stats" id="about-stats"></div>
+      <div class="about-edu"   id="about-edu"></div>
+    </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ────────────────────────────────────────────── -->
-<footer>
-  <span class="footer-copy">
-    © <span id="footer-year"></span> <span id="footer-name"></span>
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════════════════ -->
+<section id="contact" aria-label="Contact">
+  <div class="section-header reveal">
+    <span class="section-num">06</span>
+    <div>
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Let's talk</p>
+    </div>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-left  reveal" id="contact-left"></div>
+    <div class="contact-right reveal" id="contact-right"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer id="site-footer">
+  <span id="footer-name"></span>
+  <!-- <span class="footer-dot">·</span>
+  <span class="footer-status">
+    <span class="avail-pulse small"></span> Open to new grad roles
   </span>
+  <span class="footer-dot">·</span> -->
+  <span id="footer-year"></span>
 </footer>
 
+
 <script src="js/data.js"></script>
+<script src="js/render.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
