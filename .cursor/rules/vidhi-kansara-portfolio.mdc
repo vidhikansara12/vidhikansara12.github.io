@@ -1,0 +1,302 @@
+---
+description: Vidhi Kansara portfolio — stack, design system, exact copy, tone, and success criteria
+alwaysApply: true
+---
+
+# Vidhi Kansara — Personal Portfolio
+
+You are building the personal portfolio of **Vidhi Kansara** — a new grad software engineer at the intersection of **AI engineering** and **full-stack development**.
+
+## Two jobs of the site
+
+1. Show she builds **AI products that ship to production** (RAG, LLMs, MLOps, agents).
+2. Show she can build the **frontend** — the portfolio itself is proof.
+
+## Voice
+
+**Quietly exceptional.** Warm and direct. She does not sell; she shows. The work speaks; writing gives context.
+
+---
+
+## Tech stack
+
+| Area | Choice |
+|------|--------|
+| Framework | Next.js 14 (App Router) |
+| Styling | Tailwind CSS |
+| Animation | Framer Motion — **subtle only** |
+| Icons | Lucide React |
+| Fonts | Plus Jakarta Sans (headings) · Inter (body) · JetBrains Mono (code/tags) |
+| Deploy | GitHub Pages (static `next export` via `output: 'export'`) |
+
+**Do not use:** jQuery, Bootstrap, shadcn, MUI. **Write components from scratch** — that is part of the signal.
+
+---
+
+## Design system
+
+- **Background:** `#FAFAFA`
+- **Primary text:** `#111111`
+- **Secondary text:** `#555555`
+- **Accent:** `#4F46E5` (indigo)
+- **Card surface:** `#FFFFFF`, `box-shadow: 0 1px 4px rgba(0,0,0,0.06)`
+- **Border:** `#E5E5E5`
+- **Tag pills:** bg `#EEF2FF`, text `#4F46E5`, font JetBrains Mono
+
+**Spacing:** 8px base. Sections: **96px** top/bottom padding. Cards: **24px** padding.
+
+**Radius:** 12px cards, 6px tags, 8px buttons.
+
+**Max content width:** 768px centered.
+
+### Motion (only these)
+
+1. **Scroll reveal:** fade + slide up — opacity `0→1`, `y` `16px→0`, `0.4s ease-out`.
+2. **Card hover:** shadow deepens, `y: -2px`, `0.2s ease`.
+
+**No** parallax, loading screens, or extra motion flourishes.
+
+---
+
+## Hero — copy (use exactly)
+
+- **Small label** (mono, indigo, uppercase, letter-spaced): `SOFTWARE ENGINEER · AI SYSTEMS`
+- **Name** (48px bold): `Hey, I'm Vidhi 👋🏻`
+- **Tagline** (20px, secondary): `I build AI products that hold up when real people actually use them.`
+- **Body** (16px, secondary): `Most of my work lives at the intersection of LLM pipelines, full-stack engineering, and the question I keep coming back to: does this actually work outside the demo?`
+- **CTAs:** `[View my work]` (indigo filled) · `[↓ Resume]` (text only)
+
+**Right side (desktop):** terminal card (white, soft shadow, JetBrains Mono), content:
+
+```
+$ python evaluate.py
+> Loading 6,284 samples...
+> Running 5-fold CV...
+> R² = 0.9512 ✓
+> Drift detected: False ✓
+> Pipeline ready in 2.3s
+```
+
+Blinking cursor; **loop every 8s**.
+
+---
+
+## About — copy (use exactly)
+
+- **Section label:** `About me 💁🏻‍♀️`
+
+**Body:**
+
+> Hello! Thanks for stopping by :))
+>
+> I studied Computer Science at Stevens Institute of Technology and interned at JPMorgan Chase before that — but honestly the work I care about most is the stuff I've built on my own: RAG systems, ML monitoring tools, agentic workflows, and the frontends that make all of it usable by people who don't know what any of those words mean.
+>
+> I think a lot about the gap between AI that impresses engineers and AI that actually helps someone get through their day. Most of what I build is trying to close that gap.
+>
+> When I'm not building, you'll find me attempting crochet (emphasis on attempting), watching the same Bollywood films for the third time, or debugging at midnight because the bug got personal. ⭐
+>
+> Currently looking for Software Engineer and AI Engineering roles. On F1 OPT, open to H1B sponsorship.
+
+**Blockquote:** `"Make it work, make it right, make it fast." — Kent Beck 🌸`
+
+**Layout:** profile photo on the right. **No stats grid.**
+
+---
+
+## Experience — copy (use exactly)
+
+**Section label:** `Where I've worked 💼`
+
+Three white cards, stacked: **Company (bold)** + **date (mono, right)** + **role (indigo)** + prose + tag pills.
+
+### Card 1
+
+- **Header:** `AIRS MoCoRe Lab, Stevens Institute` · `Jun 2025 – Aug 2025`
+- **Role:** `AI Research Fellow`
+- **Body:** `Worked on EEG time-series data — the kind that's messy, multi-format, and fights you at every preprocessing step. Built the full ML pipeline from data cleaning to model evaluation, figured out that lag features mattered more than model choice, and ended up presenting the work at the Dean's Lecture Series.`
+- **Second paragraph:** `The thing that stuck with me from this: the data preparation step is usually harder than the modelling step, and nobody warns you about that.`
+- **Tags:** Python · PyTorch · XGBoost · scikit-learn · Feature Engineering · ML Pipelines
+
+### Card 2
+
+- **Header:** `Stevens Institute of Technology` · `2024 – 2025`
+- **Role:** `Software Developer`
+- **Body:** `Owned the backend, CI/CD pipeline, and parts of the React frontend for internal tools that students actually used every day. Small team, real users, no hand-holding. The kind of environment where you learn fast because things break and it's your problem.`
+- **Tags:** React · Node.js · REST APIs · GitHub Actions · PostgreSQL · CI/CD
+
+### Card 3
+
+- **Header:** `JPMorgan Chase & Co.` · `Jun 2023 – Aug 2023`
+- **Role:** `Software Developer Intern`
+- **Body:** `Asset & Wealth Management division. Built UI components and API integrations on systems handling live financial data — the kind where 'it's a little slow' is someone's actual money on the line. Three months that permanently changed my bar for what production-ready means.`
+- **Tags:** React · TypeScript · Spring Boot · REST APIs · Agile · Figma
+
+---
+
+## Projects — copy (use exactly)
+
+**Section label:** `What I've built 🛠️`
+
+**Subtitle** (secondary, small): `Each project has its own page with a real walkthrough — not just a screenshot and a GitHub link.`
+
+**Layout:** 2-col desktop, 1-col mobile. Each card: name + emoji, one problem line, tag pills, GitHub + Demo. Hover: lift 2px. Link to `/projects/[slug]`.
+
+| Slug | Card |
+|------|------|
+| clauseiq | **ClauseIQ — AI Document Analyst 📄** — `Because nobody reads the contract until it's too late.` — Tags: RAG · LangChain · FAISS · Claude API · FastAPI · React |
+| driftwatch | **DriftWatch — ML Model Monitor 📊** — `ML models degrade silently. This one doesn't.` — Tags: MLOps · Evidently AI · Prometheus · Grafana · FastAPI · Docker |
+| agentflow | **AgentFlow — AI Workflow Automation 🤖** — `An AI that handles your support queue while you sleep.` — Tags: LangGraph · Claude API · FastAPI · PostgreSQL · React |
+| ai-accessibility-assistant | **AI Accessibility Assistant ♿** — `Dense text excludes millions. This fixes that.` — Tags: Gemini API · FastAPI · React · WCAG 2.1 · ROUGE |
+| humanis | **Humanis — DevSecOps Pipeline 🔐** — `Security baked in from commit one — not bolted on at the end.` — Tags: GitHub Actions · Docker · Prometheus · Gitleaks · Bandit |
+
+---
+
+## Project pages (`/projects/[slug]`) — structure
+
+Each page: **Problem** (opens with stat/observation) → **What I built** + one key design decision → **🛠 How it works** (bullet list — **only place bullets are used**) → **Future directions** (if applicable) → GitHub + Demo → closing invitation (see per-project endings below).
+
+### ClauseIQ
+
+**Problem:** Around 80% of people sign contracts without reading them fully. Legal jargon is dense, time is short, and most people don't know what to look for. I wanted to fix that.
+
+**Body:** ClauseIQ is a RAG-powered document analyst. You upload any PDF — a lease, a job offer, terms of service — and it chunks the document, embeds it into a FAISS vector store, and retrieves the most relevant passages to answer your questions in plain English.
+
+**Design decision:** What I care about most in this project isn't the retrieval — it's the evaluation. Every response gets scored with ROUGE and BERTScore so you can actually see where the model is confident and where it's guessing. That honesty layer is what makes it usable, not just impressive.
+
+**🛠 How it works:**
+
+- PDF ingestion → chunking → embeddings → FAISS index
+- Claude API for answer generation with source citations
+- ROUGE/BERTScore evaluation on every response
+- FastAPI backend · React frontend · Docker
+
+**Close:** I built this because I wanted a project where the evaluation was as real as the feature itself — not an afterthought. Would love your feedback! 💬
+
+### DriftWatch
+
+**Problem:** Here's something nobody talks about enough: you can build a great model, ship it, and six months later it's quietly wrong about everything because the world changed and nobody noticed.
+
+**Body:** DriftWatch is my attempt at fixing that. It takes any classification or regression model, monitors incoming data batches using Evidently AI's statistical tests, and visualises drift, performance degradation, and feature distribution shifts on a live Grafana dashboard.
+
+**Design decision:** The most interesting part was deciding which drift metrics to surface — KL divergence vs. Population Stability Index vs. Wasserstein distance. Each tells you something different and the wrong one gives you false alarms constantly. I wrote up my reasoning in the README.
+
+**🛠 How it works:**
+
+- FastAPI backend receives new data batches
+- Evidently AI computes drift + performance metrics
+- Prometheus scrapes metrics → Grafana dashboard
+- Configurable alert thresholds → retraining flag
+- Fully containerised with Docker Compose
+
+**Close:** This came directly out of my AIRS fellowship — I built the model there and kept thinking "but how would you know if this started failing?" DriftWatch is that answer. Would love your feedback! 💬
+
+### AgentFlow
+
+**Problem:** I got curious about agentic AI after reading about forward-deployed engineering — the idea that the next wave of AI isn't chatbots, it's AI that actually does the work inside real business workflows.
+
+**Body:** AgentFlow is my hands-on exploration of that. It's an agentic system built on LangGraph that handles a support ticket queue autonomously — classifies intent, pulls context via RAG, drafts a personalised reply, logs everything to PostgreSQL, and routes anything ambiguous to a human review queue.
+
+**Design decision:** What makes it interesting isn't the happy path — it's the failure modes. I spent most of the build time on the escalation logic and the evaluation harness that scores each draft for quality, safety, and tone before it goes anywhere near a customer.
+
+**🛠 How it works:**
+
+- LangGraph orchestrates the multi-step agent flow
+- Claude API with tool calling for classification + drafting
+- FAISS-backed RAG for knowledge base retrieval
+- Human-in-the-loop queue for edge cases
+- FastAPI backend · React dashboard · PostgreSQL logging
+
+**Future:** multi-agent handoff, domain fine-tuning, A/B testing response strategies. Would love to collaborate on this! 💬
+
+### AI Accessibility Assistant
+
+**Problem:** Around 1 in 5 people have some form of reading difficulty — dyslexia, cognitive load issues, low literacy, or just English as a third language. Most of the internet isn't built for them.
+
+**Body:** I built this because the problem genuinely bothered me. The app takes dense text — a legal notice, a medical form, a government document — and uses the Gemini API to simplify it into plain language at an adjustable reading level. Add Web Speech API for audio output and it becomes accessible to people who struggle with reading entirely.
+
+**Design decision:** What I'm proudest of is the evaluation layer. I used ROUGE scores to measure how much information is preserved during simplification — because making something "simpler" while losing the important parts isn't accessibility, it's just a different problem.
+
+**🛠 How it works:**
+
+- Gemini API for text simplification with adjustable reading level
+- Web Speech API for audio output
+- ROUGE evaluation on simplification quality
+- WCAG 2.1 compliant UI throughout
+- FastAPI backend · React frontend
+
+**Close:** If you work in accessibility or EdTech — let's talk! 💬
+
+### Humanis
+
+**Problem:** I kept noticing the same thing in student codebases — API keys in plaintext, no dependency scanning, no SAST, deployments that were just "copy the file and hope." It bothered me enough to build the alternative.
+
+**Body:** Humanis is a full DevSecOps CI/CD pipeline that bakes security into every stage — not as an audit at the end, but as a gate from the first commit. Secret scanning with Gitleaks catches credentials before they hit GitHub. Bandit runs static analysis on every push. Prometheus and Grafana give you real-time visibility into what's running.
+
+**Design decision:** The most interesting design decision was where to fail the build vs. warn — too strict and developers route around it, too lenient and it's security theatre. I wrote up that reasoning in the README.
+
+**🛠 How it works:**
+
+- GitHub Actions orchestrates the full pipeline
+- Gitleaks + TruffleHog for secret scanning
+- Bandit for Python SAST on every push
+- Docker for containerised reproducible builds
+- Prometheus + Grafana for pipeline observability
+
+**Close:** Built for a team project. Became my most referenced work in interviews — turns out security-aware engineers are rare at the new grad level. 💬
+
+---
+
+## Skills — copy (use exactly)
+
+**Section label:** `What I work with ⚙️`
+
+Four cards: one-line human description + tag pills. **No percentage bars. No skill ratings.**
+
+1. **AI & LLM Engineering** — `RAG pipelines, LLM evaluation, prompt engineering, agentic workflows — the stuff that makes AI actually useful after the demo` — Tags: Python · LangChain · FastAPI · FAISS · Claude API · Gemini API · PyTorch · XGBoost · Evidently AI · LangGraph
+
+2. **Full-Stack Engineering** — `Production APIs, component-based UIs, database design — built things real users touched daily` — Tags: React · TypeScript · Node.js · Spring Boot · REST APIs · PostgreSQL · DynamoDB · Next.js
+
+3. **Infrastructure & MLOps** — `CI/CD pipelines, containerisation, model monitoring — the stuff that keeps AI reliable after you ship it` — Tags: Docker · GitHub Actions · AWS Lambda · Prometheus · Grafana · Gitleaks · Bandit · Terraform (learning)
+
+4. **Research & Evaluation** — `ML experimentation, feature engineering, statistical validation — on real biosignal data, not just Kaggle datasets` — Tags: Feature Engineering · Cross-validation · Model Benchmarking · scikit-learn · ROUGE · BERTScore
+
+---
+
+## Contact — copy (use exactly)
+
+**Section label:** `Let's talk 📬`
+
+**Body:** `I respond to every message — worst case, 24 hours. Whether it's a role, a collaboration, or just a question about one of the projects — reach out! :))`
+
+**Links:**
+
+- ✉ vidhi.kansara@outlook.com
+- 💼 linkedin.com/in/vidhikansara12
+- ⌥ github.com/vidhikansara12
+
+**Footer note** (mono, secondary, small): `Currently on F1 OPT · Open to H1B Sponsorship · Available immediately`
+
+**Footer:** `Vidhi Kansara · © 2026 · Built with Next.js`
+
+---
+
+## Tone rules — non-negotiable
+
+- She doesn't sell. She shows. Let the work talk.
+- **First person always:** "I built", "I noticed", "I wanted to fix".
+- **Numbers:** only inside project pages when part of the story. **Never** in hero. **Never** as a stats grid.
+- **One personality line per page max.**
+- **End project pages** with an invitation, not a summary.
+- **Never use:** passionate about, leverage, drove, spearheaded, synergy, results-driven.
+- If a sentence sounds like a recruiter wrote it — **delete it**.
+- When in doubt: **cut the sentence.** Shorter is smarter.
+
+---
+
+## What success looks like
+
+A hiring manager should think:
+
+- "She doesn't brag, but everything here is solid."
+- "I want to see how she thinks about my problems."
+- "Let me set up a call."
