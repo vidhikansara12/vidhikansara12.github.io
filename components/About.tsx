@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+const ease = [0.16, 1, 0.3, 1];
+
 const reveal = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
 
 export function About() {
@@ -17,18 +19,18 @@ export function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="mb-10 font-heading text-3xl font-bold text-foreground"
+          className="mb-12 font-heading text-[2rem] font-bold text-foreground"
         >
           About me 💁🏻‍♀️
         </motion.h2>
 
-        <div className="grid gap-10 md:grid-cols-[1fr_auto]">
+        <div className="grid items-start gap-12 md:grid-cols-[1fr_auto]">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-            className="space-y-4 text-base leading-relaxed text-muted"
+            variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+            className="space-y-5 text-[15px] leading-[1.75] text-muted"
           >
             <motion.p variants={reveal}>Hello! Thanks for stopping by :))</motion.p>
 
@@ -61,10 +63,12 @@ export function About() {
 
             <motion.blockquote
               variants={reveal}
-              className="mt-6 border-l-2 border-accent pl-4 italic text-foreground"
+              className="mt-8 border-l-[3px] border-accent/30 pl-5 italic text-foreground/70"
             >
-              &ldquo;Make it work, make it right, make it fast.&rdquo; — Kent Beck
-              🌸
+              &ldquo;Make it work, make it right, make it fast.&rdquo;
+              <span className="mt-1 block text-[13px] not-italic text-muted">
+                — Kent Beck 🌸
+              </span>
             </motion.blockquote>
           </motion.div>
 
@@ -76,13 +80,15 @@ export function About() {
             viewport={{ once: true, margin: "-80px" }}
             className="flex-shrink-0"
           >
-            <Image
-              src="/vidhi.jpg"
-              alt="Vidhi Kansara"
-              width={240}
-              height={240}
-              className="rounded-card object-cover"
-            />
+            <div className="overflow-hidden rounded-2xl shadow-glass">
+              <Image
+                src="/vidhi.jpg"
+                alt="Vidhi Kansara"
+                width={260}
+                height={260}
+                className="object-cover transition-transform duration-500 ease-premium hover:scale-[1.03]"
+              />
+            </div>
           </motion.div>
         </div>
       </div>

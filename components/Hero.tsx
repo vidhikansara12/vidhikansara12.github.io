@@ -3,60 +3,65 @@
 import { motion } from "framer-motion";
 import { TerminalCard } from "./TerminalCard";
 
+const ease = [0.16, 1, 0.3, 1];
+
 const reveal = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
 };
 
 export function Hero() {
   return (
-    <section className="py-section">
-      <div className="mx-auto grid max-w-content items-center gap-12 px-6 md:grid-cols-[1fr_auto]">
+    <section className="relative overflow-hidden py-section">
+      {/* Subtle warm gradient background */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-warm-100/40 via-background to-background" />
+
+      <div className="relative mx-auto grid max-w-content items-center gap-16 px-6 md:grid-cols-[1fr_auto]">
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
           <motion.p
             variants={reveal}
-            className="mb-4 font-mono text-xs uppercase tracking-widest text-accent"
+            className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-accent"
           >
             Software Engineer &middot; AI Systems
           </motion.p>
 
           <motion.h1
             variants={reveal}
-            className="mb-4 font-heading text-5xl font-bold text-foreground"
+            className="mb-5 font-heading text-[3.25rem] font-bold leading-[1.08] text-foreground md:text-[3.5rem]"
           >
             Hey, I&apos;m Vidhi 👋🏻
           </motion.h1>
 
           <motion.p
             variants={reveal}
-            className="mb-4 text-xl text-muted"
+            className="mb-5 text-xl leading-relaxed text-muted md:text-[1.35rem]"
           >
             I build AI products that hold up when real people actually use them.
           </motion.p>
 
           <motion.p
             variants={reveal}
-            className="mb-8 text-base text-muted"
+            className="mb-10 max-w-[520px] text-base leading-[1.7] text-muted/80"
           >
             Most of my work lives at the intersection of LLM pipelines, full-stack
             engineering, and the question I keep coming back to:{" "}
-            <em>does this actually work outside the demo?</em>
+            <em className="text-muted">does this actually work outside the demo?</em>
           </motion.p>
 
-          <motion.div variants={reveal} className="flex gap-4">
+          <motion.div variants={reveal} className="flex items-center gap-4">
             <a
               href="#projects"
-              className="rounded-button bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent/90"
+              className="rounded-button bg-accent px-6 py-3 text-sm font-medium text-white shadow-md shadow-accent/20 transition-all duration-hover hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25"
             >
               View my work
             </a>
             <a
               href="#"
-              className="px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+              className="rounded-button px-6 py-3 text-sm font-medium text-muted transition-all duration-hover hover:text-foreground"
             >
               ↓ Resume
             </a>
@@ -65,10 +70,10 @@ export function Hero() {
 
         {/* Terminal — desktop only */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
-          className="hidden w-[340px] md:block"
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease, delay: 0.4 }}
+          className="hidden w-[360px] md:block"
         >
           <TerminalCard />
         </motion.div>

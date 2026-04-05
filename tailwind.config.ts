@@ -8,15 +8,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FAFAFA",
-        foreground: "#111111",
-        muted: "#555555",
-        accent: "#4F46E5",
+        background: "#FAF9F7",
+        foreground: "#1A1A1A",
+        muted: "#6B6B6B",
+        accent: "#5B4ED1",
+        "accent-soft": "#EDE9FE",
         card: "#FFFFFF",
-        border: "#E5E5E5",
+        border: "#E8E6E3",
         tag: {
-          bg: "#EEF2FF",
-          fg: "#4F46E5",
+          bg: "#F3F0FF",
+          fg: "#5B4ED1",
+        },
+        warm: {
+          50: "#FFFCF9",
+          100: "#FFF8F0",
+          200: "#F5F0EB",
         },
       },
       fontFamily: {
@@ -25,33 +31,40 @@ const config: Config = {
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
-        card: "0 1px 4px rgba(0,0,0,0.06)",
-        "card-hover": "0 4px 12px rgba(0,0,0,0.1)",
+        card: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03)",
+        "card-hover":
+          "0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04)",
+        glass: "0 8px 32px rgba(0,0,0,0.06)",
+        glow: "0 0 40px rgba(91,78,209,0.08)",
       },
       borderRadius: {
-        card: "12px",
-        tag: "6px",
-        button: "8px",
+        card: "16px",
+        tag: "8px",
+        button: "10px",
       },
       spacing: {
-        section: "96px",
-        "card-pad": "24px",
+        section: "120px",
+        "card-pad": "28px",
       },
       maxWidth: {
-        content: "768px",
+        content: "800px",
       },
       transitionDuration: {
-        reveal: "400ms",
-        hover: "200ms",
+        reveal: "500ms",
+        hover: "250ms",
+      },
+      transitionTimingFunction: {
+        premium: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
         "fade-slide-up": {
-          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
-        "fade-slide-up": "fade-slide-up 0.4s ease-out forwards",
+        "fade-slide-up":
+          "fade-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
     },
   },

@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import { TagPill } from "./TagPill";
 
+const ease = [0.16, 1, 0.3, 1];
+
 const reveal = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
 };
 
 const skillCategories = [
@@ -56,12 +58,12 @@ export function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="mb-10 font-heading text-3xl font-bold text-foreground"
+          className="mb-12 font-heading text-[2rem] font-bold text-foreground"
         >
           What I work with ⚙️
         </motion.h2>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2">
           {skillCategories.map((cat) => (
             <motion.div
               key={cat.title}
@@ -69,13 +71,15 @@ export function Skills() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
-              className="rounded-card bg-card p-card-pad shadow-card"
+              className="rounded-card border border-border/60 bg-card p-card-pad shadow-card transition-all duration-hover hover:border-border hover:shadow-card-hover"
             >
-              <h3 className="mb-1 font-heading text-base font-bold text-foreground">
+              <h3 className="mb-1.5 font-heading text-[15px] font-semibold text-foreground">
                 {cat.title}
               </h3>
-              <p className="mb-4 text-sm text-muted">{cat.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <p className="mb-5 text-[13px] leading-relaxed text-muted">
+                {cat.description}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
                 {cat.tags.map((tag) => (
                   <TagPill key={tag} label={tag} />
                 ))}

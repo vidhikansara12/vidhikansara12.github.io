@@ -29,52 +29,54 @@ export default function ProjectPage({ params }: PageProps) {
   }
 
   return (
-    <main className="py-section">
-      <article className="mx-auto max-w-content px-6">
+    <main className="relative py-section">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-warm-100/30 via-background to-background" />
+
+      <article className="relative mx-auto max-w-content px-6">
         {/* Back link */}
         <Link
           href="/#projects"
-          className="mb-10 inline-flex items-center gap-2 text-sm text-muted transition-colors duration-hover hover:text-foreground"
+          className="mb-12 inline-flex items-center gap-2 text-[13px] text-muted/70 transition-all duration-hover hover:gap-3 hover:text-foreground"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={14} />
           Back to all projects
         </Link>
 
         {/* Title + tags */}
-        <h1 className="mb-4 font-heading text-4xl font-bold text-foreground">
+        <h1 className="mb-5 font-heading text-[2.5rem] font-bold leading-[1.1] text-foreground">
           {project.title}
         </h1>
 
-        <div className="mb-8 flex flex-wrap gap-2">
+        <div className="mb-10 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
             <TagPill key={tag} label={tag} />
           ))}
         </div>
 
         {/* Problem */}
-        <p className="mb-6 text-base leading-relaxed text-muted">
+        <p className="mb-7 text-[15px] leading-[1.75] text-muted">
           {project.problem}
         </p>
 
         {/* What I built */}
-        <p className="mb-6 text-base leading-relaxed text-muted">
+        <p className="mb-7 text-[15px] leading-[1.75] text-muted">
           {project.whatIBuilt}
         </p>
 
         {/* Design decision */}
-        <p className="mb-8 text-base leading-relaxed text-muted">
+        <p className="mb-10 text-[15px] leading-[1.75] text-muted">
           {project.designDecision}
         </p>
 
         {/* How it works */}
-        <h2 className="mb-4 font-heading text-xl font-bold text-foreground">
+        <h2 className="mb-5 font-heading text-xl font-semibold text-foreground">
           🛠 How it works
         </h2>
-        <ul className="mb-8 space-y-2 pl-5">
+        <ul className="mb-10 space-y-3 pl-5">
           {project.howItWorks.map((item, i) => (
             <li
               key={i}
-              className="list-disc text-base leading-relaxed text-muted"
+              className="list-disc text-[15px] leading-[1.75] text-muted marker:text-accent/40"
             >
               {item}
             </li>
@@ -83,21 +85,21 @@ export default function ProjectPage({ params }: PageProps) {
 
         {/* Future directions */}
         {project.futureDirections && (
-          <p className="mb-8 text-base leading-relaxed text-muted">
+          <p className="mb-10 text-[15px] leading-[1.75] text-muted">
             {project.futureDirections}
           </p>
         )}
 
         {/* Links */}
-        <div className="mb-8 flex gap-4">
+        <div className="mb-10 flex gap-3">
           {project.githubUrl && project.githubUrl !== "#" && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-button bg-foreground px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-button bg-foreground px-5 py-2.5 text-[13px] font-medium text-white transition-all duration-hover hover:-translate-y-0.5 hover:shadow-lg"
             >
-              <Github size={16} />
+              <Github size={15} />
               GitHub
             </a>
           )}
@@ -106,16 +108,16 @@ export default function ProjectPage({ params }: PageProps) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-button border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-background"
+              className="inline-flex items-center gap-2 rounded-button border border-border px-5 py-2.5 text-[13px] font-medium text-foreground transition-all duration-hover hover:-translate-y-0.5 hover:shadow-md"
             >
-              <ExternalLink size={16} />
+              <ExternalLink size={15} />
               Demo
             </a>
           )}
         </div>
 
         {/* Closing */}
-        <p className="text-base leading-relaxed text-muted">
+        <p className="text-[15px] leading-[1.75] text-muted">
           {project.closing}
         </p>
       </article>

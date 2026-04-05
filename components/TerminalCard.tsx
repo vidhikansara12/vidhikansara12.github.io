@@ -6,8 +6,8 @@ const lines = [
   "$ python evaluate.py",
   "> Loading 6,284 samples...",
   "> Running 5-fold CV...",
-  "> R² = 0.9512 ✓",
-  "> Drift detected: False ✓",
+  "> R\u00B2 = 0.9512 \u2713",
+  "> Drift detected: False \u2713",
   "> Pipeline ready in 2.3s",
 ];
 
@@ -24,40 +24,43 @@ export function TerminalCard() {
       return () => clearTimeout(timeout);
     }
 
-    // After all lines shown, wait 8s then restart
     const restart = setTimeout(() => setVisibleLines(0), 8000);
     return () => clearTimeout(restart);
   }, [visibleLines]);
 
-  // Blinking cursor
   useEffect(() => {
     const interval = setInterval(() => setShowCursor((c) => !c), 530);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="w-full rounded-card bg-card p-card-pad shadow-card">
+    <div className="w-full overflow-hidden rounded-card border border-border/60 bg-card p-card-pad shadow-glass">
       {/* Window dots */}
-      <div className="mb-4 flex gap-2">
-        <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-        <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-        <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
+      <div className="mb-5 flex gap-2">
+        <span className="h-3 w-3 rounded-full bg-[#FF5F57] shadow-[inset_0_-1px_2px_rgba(0,0,0,0.1)]" />
+        <span className="h-3 w-3 rounded-full bg-[#FEBC2E] shadow-[inset_0_-1px_2px_rgba(0,0,0,0.1)]" />
+        <span className="h-3 w-3 rounded-full bg-[#28C840] shadow-[inset_0_-1px_2px_rgba(0,0,0,0.1)]" />
       </div>
 
-      <pre className="font-mono text-sm leading-relaxed text-foreground">
+      <pre className="font-mono text-[13px] leading-relaxed text-foreground/80">
         {lines.slice(0, visibleLines).map((line, i) => (
-          <div key={i}>{line}</div>
+          <div
+            key={i}
+            className={line.startsWith("$") ? "text-foreground font-medium" : ""}
+          >
+            {line}
+          </div>
         ))}
         {visibleLines < lines.length && (
           <span
-            className={`inline-block h-4 w-2 bg-foreground ${showCursor ? "opacity-100" : "opacity-0"}`}
+            className={`inline-block h-[18px] w-[9px] rounded-sm bg-accent transition-opacity duration-100 ${showCursor ? "opacity-80" : "opacity-0"}`}
           />
         )}
         {visibleLines === lines.length && (
-          <span>
+          <span className="text-foreground font-medium">
             ${" "}
             <span
-              className={`inline-block h-4 w-2 bg-foreground ${showCursor ? "opacity-100" : "opacity-0"}`}
+              className={`inline-block h-[18px] w-[9px] rounded-sm bg-accent transition-opacity duration-100 ${showCursor ? "opacity-80" : "opacity-0"}`}
             />
           </span>
         )}
