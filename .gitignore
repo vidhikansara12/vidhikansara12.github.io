@@ -31,3 +31,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# IDE / tooling
+.cursor/
+.claude/
+
+# OS files
+thumbs.db
