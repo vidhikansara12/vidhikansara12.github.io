@@ -22,10 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # `cache: npm` requires package-lock.json in the repo root; without it the
+      # setup-node step fails. After committing package-lock.json, add:
+      #   cache: npm
+      # and switch the install step to: npm ci
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
 
       - name: Install dependencies
         run: npm install
