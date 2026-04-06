@@ -32,8 +32,8 @@ export function Contact() {
           className="mb-10 max-w-[480px] text-[15px] leading-[1.7] text-muted"
         >
           I respond to every message — worst case, 24 hours. Whether it&apos;s a
-          role, a collaboration, or just a question about one of the projects —
-          reach out! :))
+          role or just a question about one of the projects —
+          reach out! :)
         </motion.p>
 
         <motion.div
@@ -81,15 +81,14 @@ export function Contact() {
           </motion.a>
         </motion.div>
 
-        <motion.p
+        {/* <motion.p
           variants={reveal}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           className="mb-10 font-mono text-[11px] tracking-wide text-muted/60"
         >
-          Currently on F1 OPT · Open to H1B Sponsorship · Available immediately
-        </motion.p>
+        </motion.p> */}
 
         <motion.footer
           variants={reveal}

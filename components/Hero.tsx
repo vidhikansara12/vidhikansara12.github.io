@@ -49,7 +49,7 @@ export function Hero() {
           >
             Most of my work lives at the intersection of LLM pipelines, full-stack
             engineering, and the question I keep coming back to:{" "}
-            <em className="text-muted">does this actually work outside the demo?</em>
+            <em className="text-muted">how does it actually work? and how to make it more better</em>
           </motion.p>
 
           <motion.div variants={reveal} className="flex items-center gap-4">

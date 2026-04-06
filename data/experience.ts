@@ -11,7 +11,7 @@ export const experience: ExperienceEntry[] = [
   {
     id: "airs",
     company: "AIRS MoCoRe Lab, Stevens Institute",
-    dateRange: "Jun 2025 – Aug 2025",
+    dateRange: "Jun 2025 - Aug 2025",
     role: "AI Research Fellow",
     paragraphs: [
       "Worked on EEG time-series data — the kind that's messy, multi-format, and fights you at every preprocessing step. Built the full ML pipeline from data cleaning to model evaluation, figured out that lag features mattered more than model choice, and ended up presenting the work at the Dean's Lecture Series.",
