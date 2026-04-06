@@ -32,7 +32,7 @@ export function About() {
             variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
             className="space-y-5 text-[15px] leading-[1.75] text-muted"
           >
-            <motion.p variants={reveal}>Hello! Thanks for stopping by :))</motion.p>
+            <motion.p variants={reveal}>Hello :)</motion.p>
 
             <motion.p variants={reveal}>
               I studied Computer Science at Stevens Institute of Technology and
@@ -52,13 +52,11 @@ export function About() {
             <motion.p variants={reveal}>
               When I&apos;m not building, you&apos;ll find me attempting crochet
               (emphasis on <em>attempting</em>), watching the same Bollywood films
-              for the third time, or debugging at midnight because the bug got
-              personal. ⭐
+              for the third time and dancing on the hooksteps, or debugging at midnight because the bug got personal. ⭐
             </motion.p>
 
             <motion.p variants={reveal}>
-              Currently looking for Software Engineer and AI Engineering roles. On
-              F1 OPT, open to H1B sponsorship.
+              Currently looking for Software Engineer and AI Engineering roles.
             </motion.p>
 
             <motion.blockquote
@@ -82,7 +80,7 @@ export function About() {
           >
             <div className="overflow-hidden rounded-2xl shadow-glass">
               <Image
-                src="/vidhi.jpg"
+                src="/vidhi_duckcard_photo.jpg"
                 alt="Vidhi Kansara"
                 width={260}
                 height={260}

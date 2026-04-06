@@ -29,7 +29,7 @@ export const experience: ExperienceEntry[] = [
   {
     id: "stevens-sd",
     company: "Stevens Institute of Technology",
-    dateRange: "2024 – 2025",
+    dateRange: "Jan 2025 - Dec 2025",
     role: "Software Developer",
     paragraphs: [
       "Owned the backend, CI/CD pipeline, and parts of the React frontend for internal tools that students actually used every day. Small team, real users, no hand-holding. The kind of environment where you learn fast because things break and it's your problem.",
@@ -46,7 +46,7 @@ export const experience: ExperienceEntry[] = [
   {
     id: "jpm",
     company: "JPMorgan Chase & Co.",
-    dateRange: "Jun 2023 – Aug 2023",
+    dateRange: "Jun 2023 - Aug 2023",
     role: "Software Developer Intern",
     paragraphs: [
       "Asset & Wealth Management division. Built UI components and API integrations on systems handling live financial data — the kind where 'it's a little slow' is someone's actual money on the line. Three months that permanently changed my bar for what production-ready means.",
